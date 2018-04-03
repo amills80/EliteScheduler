@@ -7,10 +7,12 @@ import { TournamentsPage } from './../pages/tournaments/tournaments';
 import { TeamDetailPage } from './../pages/team-detail/team-detail';
 import { TeamsPage } from './../pages/teams/teams';
 import { GamePage } from './../pages/game/game';
+import { MyTeamsPage } from './../pages/my-teams/my-teams';
+import { StandingsPage } from './../pages/standings/standings';
+import { TeamHomePage } from './../pages/team-home/team-home';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MyTeamsPage } from './../pages/my-teams/my-teams';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MyTeamsPage } from './../pages/my-teams/my-teams';
     GamePage,
     TeamsPage,
     TeamDetailPage,
-    TournamentsPage
+    TournamentsPage,
+    StandingsPage,
+    TeamHomePage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { MyTeamsPage } from './../pages/my-teams/my-teams';
     GamePage,
     TeamsPage,
     TeamDetailPage,
-    TournamentsPage
+    TournamentsPage,
+    StandingsPage,
+    TeamHomePage
   ],
   providers: [
     StatusBar,
