@@ -29,6 +29,7 @@ import { EliteApi } from '../providers/elite-api/elite-api';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

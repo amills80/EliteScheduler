@@ -14,7 +14,7 @@ export class EliteApi {
 
   getTournaments(){
     return new Promise(resolve => {
-      this.http.get(`${this.baseUrl}/tournaments.json`).subscribe( res => resolve(res.json()));
+      this.http.get(`${this.baseUrl}/tournaments.json`).subscribe(res => resolve(res.json()));
     });
   }
 }
