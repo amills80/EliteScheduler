@@ -1,7 +1,7 @@
 import { EliteApi } from './../../providers/elite-api/elite-api';
 import { TeamsPage } from './../teams/teams';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,11 +14,23 @@ export class TournamentsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private eliteApi: EliteApi) {
+    private eliteApi: EliteApi,
+    public loadingController: LoadingController) {
   }
 
   ionViewDidLoad() {
-    this.eliteApi.getTournaments().then(data => this.tournaments = data);
+    let loader = this.loadingController.create({
+      content: 'Getting tournaments...', 
+      spinner: 'dots'
+    });
+
+    loader.present().then(() => {
+      this.eliteApi.getTournaments().then(data => {
+        this.tournaments = data;
+        loader.dismiss();
+      });
+    })
+    
   }
 
   itemTapped($event, tourney) {
