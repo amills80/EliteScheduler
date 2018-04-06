@@ -10,8 +10,22 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
 
+<ion-card *ngIf="!favorites">
+    <ion-card-header>No Followed Teams</ion-card-header>
+    <ion-card-content>
+        <p>You are currently not following any teams.</p>
+        <p>Please select a tournament. Then you can follow teams from their team page.</p> 
+
+        <button ion-button icon-left outline full (click)="goToTournaments()">
+            <ion-icon name="search"></ion-icon>
+            Find a Tournament
+        </button>
+    </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="favorites">
     <ion-list>
         <ion-list-header>Followed Teams</ion-list-header>
         <button ion-item *ngFor="let item of favorites" (click)="favoriteTapped($event, item)">
@@ -20,9 +34,15 @@
             <p>{{item.tournamentName}}</p>
         </button>
     </ion-list>
-<!-- 
-<p>You are currently not following any teams.</p>
-<p>Please select a tournament. Then you can follow teams from their team page.</p> -->
 
-    <button ion-button full (click)="goToTournaments()">Find a Tournament</button>
+    <ion-card-content>
+        <p>To follow more teams, select a tournament, then you can follow more teams from their team page.</p>
+
+        <button ion-button icon-left  full (click)="goToTournaments()">
+            <ion-icon name="search"></ion-icon>
+            Find a Tournament
+        </button>
+
+    </ion-card-content>
+</ion-card>
 </ion-content>
