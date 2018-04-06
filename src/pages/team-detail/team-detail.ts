@@ -1,3 +1,4 @@
+import { StandingsPage } from './../standings/standings';
 import { GamePage } from './../game/game';
 import { EliteApi } from './../../providers/elite-api/elite-api';
 import { Component } from '@angular/core';
@@ -12,6 +13,7 @@ import * as _ from 'lodash';
 export class TeamDetailPage {
   public team: any = {};
   public games: any[];
+  public teamStanding: any = {};
   private tourneyData: any;
 
   constructor(
@@ -40,6 +42,7 @@ export class TeamDetailPage {
                     };
                   })
                 .value();
+    this.teamStanding = _.find(this.tourneyData.standings, {'teamId': this.team.id });
   }
 
   getScoreDisplay(isTeam1, team1Score, team2Score) {
