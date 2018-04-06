@@ -1,3 +1,4 @@
+import { TeamHomePage } from './../team-home/team-home';
 import { EliteApi } from './../../providers/elite-api/elite-api';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -9,7 +10,6 @@ import { NavController, NavParams } from 'ionic-angular';
 export class GamePage {
 public game: any = {};
 
-
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -20,7 +20,10 @@ public game: any = {};
     this.game = this.navParams.data;
   }
 
-  teamTapped() {
+  teamTapped(teamId) {
     let tourneyData = this.eliteApi.getCurrentTourney();
+    let team = tourneyData.teams.find(t => t.id === teamId);
+    this.navCtrl.push(TeamHomePage, team);
+  
   }
 }
