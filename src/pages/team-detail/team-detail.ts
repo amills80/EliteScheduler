@@ -3,6 +3,7 @@ import { GamePage } from './../game/game';
 import { EliteApi } from './../../providers/elite-api/elite-api';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import moment from 'moment';
 
 import * as _ from 'lodash';
 
@@ -11,10 +12,13 @@ import * as _ from 'lodash';
   templateUrl: 'team-detail.html',
 })
 export class TeamDetailPage {
+  public dateFilter: string;
+  private allGames: any[]; 
   public team: any = {};
   public games: any[];
   public teamStanding: any = {};
   private tourneyData: any;
+  public useDateFilter: false;
 
   constructor(
     public navCtrl: NavController, 
@@ -42,8 +46,17 @@ export class TeamDetailPage {
                     };
                   })
                 .value();
+    this.allGames = this.games;
     this.teamStanding = _.find(this.tourneyData.standings, {'teamId': this.team.id });
   }
+
+ dateChanged() {
+   if(this.useDateFilter){
+    this.games = _.filter(this.allGames, g => moment(g.time).isSame(this.dateFilter, 'day'));
+   } else {
+    this.games = this.allGames;
+   }
+ }
 
   getScoreDisplay(isTeam1, team1Score, team2Score) {
     if (team1Score && team2Score) { 
