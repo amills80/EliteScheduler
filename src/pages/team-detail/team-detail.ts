@@ -69,9 +69,17 @@ export class TeamDetailPage {
       return "";
     }
   }
-
   gameClicked($event, game){
     let sourceGame = this.tourneyData.games.find(g => g.id === game.gameId);
     this.navCtrl.parent.parent.push(GamePage, sourceGame);
   }
+
+  getScoreWorL(game) {
+    return game.scoreDisplay ? game.scoreDisplay[0] : ''
+  }
+
+  getScoreDisplayBadgeClass(game) {
+    return game.scoreDisplay.indexOf('W:')  === 0 ? 'primary' : 'danger';
+  }
+
 }
