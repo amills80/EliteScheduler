@@ -2,6 +2,7 @@ import { TeamHomePage } from './../team-home/team-home';
 import { EliteApi } from './../../providers/elite-api/elite-api';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MapPage } from '../map/map';
 
 @Component({
   selector: 'page-game',
@@ -28,7 +29,7 @@ public game: any = {};
   }
 
   goToMap() {
-    return null;
+    this.navCtrl.push(MapPage, this.game)
   }
 
   goToDirections() {
