@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MapPage } from '../map/map';
 
+declare var window: any;
+
 @Component({
   selector: 'page-game',
   templateUrl: 'game.html',
@@ -33,7 +35,11 @@ public game: any = {};
   }
 
   goToDirections() {
-    return null;
+    let tourneyData = this.eliteApi.getCurrentTourney();
+    let location = tourneyData.locations[this.game.locationId];
+    window.location = `geo:${location.latitude},${location.longitude};u=35`;
+    // console.log(window.location);
+    // alert(window.location);
   }
 
   isWinner(score1, score2) {
