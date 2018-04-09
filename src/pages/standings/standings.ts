@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 })
 export class StandingsPage {
 public allStandings: any [];
+public divisionFilter: string = 'division';
 public standings: any [];
 public team: any;
 
@@ -38,4 +39,11 @@ public team: any;
     return null;
   }
 
+  filterDivision() {
+    if (this.divisionFilter === 'all'){
+      this.standings = this.allStandings;
+    } else {
+      this.standings = _.filter(this.allStandings, s => s.division === this.team.division);
+    }
+  }
 }
