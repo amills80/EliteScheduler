@@ -21,7 +21,7 @@ export class TournamentsPage {
   ionViewDidLoad() {
     let loader = this.loadingController.create({
       content: 'Getting tournaments...', 
-      spinner: 'dots'
+      // spinner: 'dots'
     });
 
     loader.present().then(() => {
