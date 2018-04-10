@@ -4,18 +4,23 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MapPage } from '../map/map';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
 declare var window: any;
 
 @Component({
   selector: 'page-game',
   templateUrl: 'game.html',
 })
+
 export class GamePage {
-public game: any = {};
+  public game: any = {};
+  public userLocation: { lat: number, lng: number };
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    private geolocation: Geolocation,
     public eliteApi: EliteApi) {
   }
 
@@ -37,7 +42,14 @@ public game: any = {};
   goToDirections() {
     let tourneyData = this.eliteApi.getCurrentTourney();
     let location = tourneyData.locations[this.game.locationId];
-    window.location = `geo:${location.latitude},${location.longitude};u=35`;
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.userLocation = {
+        lat: resp.coords.latitude,
+        lng: resp.coords.longitude
+      };
+    });
+     
+    window.userLocation = `geo:${location.latitude},${location.longitude};u=35`;
     // console.log(window.location);
     // alert(window.location);
   }

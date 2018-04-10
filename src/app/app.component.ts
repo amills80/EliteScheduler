@@ -1,3 +1,4 @@
+import { UserSettings } from './../providers/user-settings/user-settings';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,7 +16,11 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    private userSettings: UserSettings,
+    public splashScreen: SplashScreen) {
     this.initializeApp();
   }
 
@@ -25,6 +30,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.userSettings.initStorage().then(() => this.rootPage = MyTeamsPage);
     });
   }
 

@@ -17,6 +17,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { EliteApi } from '../providers/elite-api/elite-api';
 import { UserSettings } from '../providers/user-settings/user-settings';
+import { Geolocation } from '@ionic-native/geolocation';
+import { SQLite } from '@ionic-native/sqlite';
+import { SqlStorage } from '../providers/sql-storage/sql-storage';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { UserSettings } from '../providers/user-settings/user-settings';
     HttpModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyDFVWMdt8bEc2FXEOliK9D_v9rddzXdKkY'})
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyDFVWMdt8bEc2FXEOliK9D_v9rddzXdKkY'}),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +58,10 @@ import { UserSettings } from '../providers/user-settings/user-settings';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     EliteApi,
-    UserSettings
+    UserSettings,
+    SQLite,
+    Geolocation,
+    SqlStorage
   ]
 })
 export class AppModule {}
