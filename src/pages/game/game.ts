@@ -55,6 +55,6 @@ export class GamePage {
   }
 
   isWinner(score1, score2) {
-    return Number(score1) > Number(score2) ? 'primary' : 'danger';
+    return Number(score1) > Number(score2) ? 'secondary' : 'danger';
   }
 }

@@ -85,7 +85,7 @@ export class TeamDetailPage {
   }
 
   getScoreDisplayBadgeClass(game) {
-    return game.scoreDisplay.indexOf('W:')  === 0 ? 'primary' : 'danger';
+    return game.scoreDisplay.indexOf('W:')  === 0 ? 'secondary' : 'danger';
   }
 
   toggleFollow() {
